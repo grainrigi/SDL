@@ -245,10 +245,15 @@ WIN_SetTextInputRect(_THIS, SDL_Rect *rect)
     if (himc)
     {
         COMPOSITIONFORM cf;
+		CANDIDATEFORM cdf;
         cf.ptCurrentPos.x = videodata->ime_rect.x;
         cf.ptCurrentPos.y = videodata->ime_rect.y;
         cf.dwStyle = CFS_FORCE_POSITION;
+		cdf.dwIndex = 0;
+		cdf.dwStyle = CFS_CANDIDATEPOS;
+		cdf.ptCurrentPos = cf.ptCurrentPos;
         ImmSetCompositionWindow(himc, &cf);
+		ImmSetCandidateWindow(himc, &cdf);
         ImmReleaseContext(videodata->ime_hwnd_current, himc);
     }
 }
