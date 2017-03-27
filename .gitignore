@@ -36,5 +36,7 @@ res/
 packages/
 ipch/
 runtime/
+lib/
+tests/
 *.db
 *.opendb
