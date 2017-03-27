@@ -248,7 +248,11 @@ WIN_SetTextInputRect(_THIS, SDL_Rect *rect)
 		CANDIDATEFORM cdf;
         cf.ptCurrentPos.x = videodata->ime_rect.x;
         cf.ptCurrentPos.y = videodata->ime_rect.y;
-        cf.dwStyle = CFS_FORCE_POSITION;
+		cf.rcArea.left = rect->x;
+		cf.rcArea.top = rect->y;
+		cf.rcArea.right = rect->x + rect->w;
+		cf.rcArea.bottom = rect->y + rect->h;
+        cf.dwStyle = CFS_RECT;
 		cdf.dwIndex = 0;
 		cdf.dwStyle = CFS_CANDIDATEPOS;
 		cdf.ptCurrentPos = cf.ptCurrentPos;
@@ -886,13 +890,13 @@ IME_HandleMessage(HWND hwnd, UINT msg, WPARAM wParam, LPARAM *lParam, SDL_VideoD
         IME_InputLangChanged(videodata);
         break;
     case WM_IME_SETCONTEXT:
-        *lParam = 0;
+        //*lParam = 0;
         break;
     case WM_IME_STARTCOMPOSITION:
-        trap = SDL_TRUE;
+        //trap = SDL_TRUE;
         break;
     case WM_IME_COMPOSITION:
-        trap = SDL_TRUE;
+        //trap = SDL_TRUE;
         himc = ImmGetContext(hwnd);
         if (*lParam & GCS_RESULTSTR) {
             IME_GetCompositionString(videodata, himc, GCS_RESULTSTR);
