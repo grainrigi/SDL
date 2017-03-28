@@ -3643,6 +3643,14 @@ SDL_SetTextInputRect(SDL_Rect *rect)
     }
 }
 
+void
+SDL_SetCompositionFontHeight(int height)
+{
+	if(_this && _this->SetCompositionFontHeight){
+		_this->SetCompositionFontHeight(_this, height);
+	}
+}
+
 SDL_bool
 SDL_HasScreenKeyboardSupport(void)
 {

@@ -227,6 +227,7 @@
 #define SDL_IsTextInputActive SDL_IsTextInputActive_REAL
 #define SDL_StopTextInput SDL_StopTextInput_REAL
 #define SDL_SetTextInputRect SDL_SetTextInputRect_REAL
+#define SDL_SetCompositionFontHeight SDL_SetCompositionFontHeight_REAL
 #define SDL_HasScreenKeyboardSupport SDL_HasScreenKeyboardSupport_REAL
 #define SDL_IsScreenKeyboardShown SDL_IsScreenKeyboardShown_REAL
 #define SDL_LoadObject SDL_LoadObject_REAL

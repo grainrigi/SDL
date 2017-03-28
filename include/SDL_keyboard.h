@@ -185,6 +185,13 @@ extern DECLSPEC void SDLCALL SDL_StopTextInput(void);
 extern DECLSPEC void SDLCALL SDL_SetTextInputRect(SDL_Rect *rect);
 
 /**
+*  \brief Set the height of the font used in the composition window.
+*
+*  \sa SDL_StartTextInput()
+*/
+extern DECLSPEC void SDLCALL SDL_SetCompositionFontHeight(int height);
+
+/**
  *  \brief Returns whether the platform has some screen keyboard support.
  *
  *  \return SDL_TRUE if some keyboard support is available else SDL_FALSE.

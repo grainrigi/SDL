@@ -262,6 +262,35 @@ WIN_SetTextInputRect(_THIS, SDL_Rect *rect)
     }
 }
 
+void
+WIN_SetCompositionFontHeight(_THIS, int height)
+{
+	SDL_VideoData *videodata = (SDL_VideoData *)_this->driverdata;
+	HIMC himc = 0;
+
+	himc = ImmGetContext(videodata->ime_hwnd_current);
+	if (himc)
+	{
+		LOGFONT font;
+		font.lfWidth = 0;
+		font.lfHeight = height;
+		font.lfEscapement = 0;
+		font.lfOrientation = 0;
+		font.lfWeight = FW_REGULAR;
+		font.lfItalic = FALSE;
+		font.lfUnderline = FALSE;
+		font.lfStrikeOut = FALSE;
+		font.lfCharSet = DEFAULT_CHARSET;
+		font.lfOutPrecision = OUT_DEFAULT_PRECIS;
+		font.lfClipPrecision = CLIP_DEFAULT_PRECIS;
+		font.lfQuality = DEFAULT_QUALITY;
+		font.lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
+		font.lfFaceName[0] = TEXT('\0');
+		ImmSetCompositionFont(himc, &font);
+		ImmReleaseContext(videodata->ime_hwnd_current, himc);
+	}
+}
+
 #ifdef SDL_DISABLE_WINDOWS_IME
 
 
